@@ -1,0 +1,12 @@
+{
+  "name": "JaveScript-interview",
+  "version": "1.0.0",
+  "description": "JS面试",
+  "main": "index.js",
+  "author": "pengtianyu<2501846063@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "prettier": "^2.2.1"
+  }
+}

@@ -6,7 +6,10 @@
 </head>
 <body>
 <script>
-
+let worker = new Worker('./JS/数组排序/quickSort.js')
+worker.onmessage = function(e) {
+	console.log(e);
+}
 </script>
 </body>
 </html>

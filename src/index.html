@@ -5,11 +5,39 @@
 	<title>Title</title>
 </head>
 <body>
+<div id="app">
+	<input type="text" v-model="name">
+	{{name}}
+</div>
 <script>
-let worker = new Worker('./JS/数组排序/quickSort.js')
-worker.onmessage = function(e) {
-	console.log(e);
-}
+	let worker = new Worker("./JS/数组排序/quickSort.js");
+	worker.onmessage = function(e) {
+		console.log(e);
+	};
+</script>
+<script src="手写/deepClone.js"></script>
+<script src="手写/Responsive.js"></script>
+<script>
+	window.addEventListener('my_event', e => {
+		console.log(e.detail);
+	})
+
+	let myEvent = new CustomEvent('my_event', {
+		detail: {
+			name: 'swt'
+		}
+	})
+	window.dispatchEvent(myEvent)
+
+
+
+
+	const vm = new Vue({
+		el: "#app",
+		data: {
+			name: "孙伟涛"
+		}
+	});
 </script>
 </body>
 </html>

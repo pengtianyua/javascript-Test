@@ -4,7 +4,7 @@
  * @param fn 需要节流的函数
  * @param delay 延迟时间
  * */
-function throttle(fn, delay) {
+export function throttle(fn, delay) {
 	let canRun = true;
 	return function () {
 		if (!canRun) return;

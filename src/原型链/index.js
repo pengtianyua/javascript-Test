@@ -16,4 +16,4 @@ console.log("原型对象通过__proto__指向对象的原型对象", Person.pro
 //对象的原型对象的constructor属性指向对象的构造函数
 console.log("对象的原型对象的constructor属性指向对象的构造函数", Object.prototype.constructor === Object);
 //对象的原型对象的原型对象为null
-console.log("对象的原型对象的原型对象为null", Object.prototype.__proto__ === null);
+console.log("对象的原型对象的原型对象为null", Object.prototype.__proto__ === null);d

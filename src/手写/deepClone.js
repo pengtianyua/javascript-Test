@@ -13,6 +13,17 @@ function deepClone(obj) {
 	return newObj;
 }
 
+/**
+ * @description 所需拷贝对象含有内置类型并且不包含函数
+ * */
+function structuralClone(obj) {
+	return new Promise(resolve => {
+		const {port1, port2} = new MessageChannel()
+		port2.onmessage = ev => resolve(ev.data)
+		port1.postMessage(obj)
+	})
+}
+
 let obj = {
 	name: "swt",
 	a: {
@@ -20,11 +31,12 @@ let obj = {
 	},
 	c: undefined,
 	d: null,
-	e: Symbol(),
-	f: /^\d+$/,
-	g: function () {}
+	f: /^\d+$/
 };
 let newObj = deepClone(obj);
-console.log(newObj);
-console.log(newObj === obj);
-console.log(newObj.g === obj.g);
+
+
+(async () => {
+	const clone = await structuralClone(obj)
+	console.log(clone);
+})()

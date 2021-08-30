@@ -14,7 +14,7 @@ const dropAreaEle = document.querySelector("#dropArea");
 const imgPreviewEle = document.querySelector("#imagePreview");
 const IMAGE_MIME_REGEXP = /^image\/(jpe?g|gif|png)$/i;
 
-//  组织默认拖拽行为
+//  阻止默认拖拽行为
 ["dragenter", "dragover", "dragleave", "drop"].forEach(name => {
 	dropAreaEle.addEventListener(name, preventDefault, false);
 	document.body.addEventListener(name, preventDefault, false);
@@ -58,7 +58,7 @@ function upload({ url, file, fieldName = "file" }) {
 	let formData = new FormData();
 	formData.set(fieldName, file);
 	request.post(url, formData, {
-		onUploadProgress(e) {
+		onUploadProgress(progressEvent) {
 			const percentCompleted = Math.round(
 				(progressEvent.loaded * 100) / progressEvent.total
 			);

@@ -29,8 +29,8 @@ function generateZipFile(
 async function uploadFile() {
 	let fileList = uploadFileEle.files;
 	if (!fileList.length) return;
-	let webkieRelativePath = fileList[0].webkitRelativePath;
-	let zipFileName = webkieRelativePath.split("/")[0] + "zip";
+	let webkitRelativePath = fileList[0].webkitRelativePath;
+	let zipFileName = webkitRelativePath.split("/")[0] + "zip";
 	let zipFile = await generateZipFile(zipFileName, fileList);
 	upload({
 		url: "",

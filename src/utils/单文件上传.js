@@ -1,3 +1,5 @@
+// <input id="uploadFile" type="file" accept="image/*" />
+
 const uploadFileEle = document.querySelector("#uploadFile");
 
 export function uploadFile() {
@@ -11,12 +13,12 @@ export function uploadFile() {
 
 	//  上传文件
 	upload({
-		url: '',
+		url: "",
 		file
 	});
 }
 
-function upload(url, file, fieldName = "file") {
+function upload({ url, file, fieldName = "file" }) {
 	let formData = new FormData();
 	formData.set(fieldName, file);
 	request.post(url, formData, {
@@ -24,7 +26,7 @@ function upload(url, file, fieldName = "file") {
 		onprogress(progressEvent) {
 			const percentCompleted = Math.round(
 				(progressEvent.loaded * 100) / progressEvent.total
-			)
+			);
 			console.log(percentCompleted);
 		}
 	});

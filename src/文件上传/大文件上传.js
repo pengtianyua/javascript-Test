@@ -144,7 +144,7 @@ function concatFiles(url, name, md5) {
 }
 
 /**
- *
+ * @description 上传文件
  * */
 async function uploadFile() {
 	if (!uploadFileEle.files.length) return;
@@ -171,4 +171,3 @@ async function uploadFile() {
 	}
 	await concatFiles("", file.name, fileMd5);
 }
-

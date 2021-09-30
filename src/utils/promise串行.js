@@ -12,8 +12,8 @@ function runPromiseByQueue(myPromises) {
 }
 
 async function runPromiseByQueue2(myPromises) {
-	for (let value of myPromises) {
-		await value()
+	for await (let value of myPromises) {
+		value()
 	}
 }
 

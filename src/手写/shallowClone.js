@@ -16,7 +16,7 @@ let person = { name: "swt", age: 20 };
 const people = Object.assign({}, person);
 people.name = "pty";
 console.log(person); //  { name: 'swt', age: 20 }
-console.log(people); //  { name: 'pty', age: 20 }
+console.log(people); //  { name: 'pty', age: 20 }	
 
 /**
  * Array.prototype.concat

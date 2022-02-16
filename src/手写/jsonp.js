@@ -4,6 +4,7 @@
  * 3.创建一个script标签并插入到页面中
  * 4.挂载回调函数
  */
+
 (function(window, document) {
 	"use strict";
 	window.$jsonp = function(url, data, callback) {
@@ -12,7 +13,7 @@
 		// {id: 1, name: 'jack'} => id=1&name=jack
 		let dataString = url.indexOf("?") === -1 ? "?" : "&";
 		for (const key in data) {
-			dataString += key + "=" + data[key] + "&";
+			dataString += `${key}=${data[key]}&`;
 		}
 
 		// 处理 URL 中的回调函数
@@ -33,3 +34,26 @@
 		document.body.appendChild(scriptEle);
 	};
 })(window, document);
+
+const jsonp = ({ url, params, callbackName }) => {
+	const generalUrl = () => {
+		let dataSrc = "";
+		for (let key in params) {
+			// eslint-disable-next-line no-prototype-builtins
+			if (params.hasOwnProperty(key)) {
+				dataSrc += `${key}=${params[key]}&`;
+			}
+		}
+		dataSrc += `callback=${callbackName}`;
+		return `${url}?${dataSrc}`;
+	};
+	return new Promise(resolve => {
+		const scriptEle = document.createElement("script");
+		scriptEle.src = generalUrl();
+		document.body.appendChild(scriptEle);
+		window[callbackName] = data => {
+			resolve(data);
+			document.body.removeChild(scriptEle);
+		};
+	});
+};

@@ -6,11 +6,11 @@
  * @param {string} mask
  * @returns {string}
  * */
-function mask(cc, num = 4, mask = '*') {
-	return `${cc}`.slice(-num).padStart(`${cc}`.length, mask)
+function mask(cc, num = 4, mask = "*") {
+	return `${cc}`.slice(-num).padStart(`${cc}`.length, mask);
 }
 
-mask(123456789) // *****6789
+mask(123456789); // *****6789
 
 /**
  * 获取昨天的日期
@@ -20,10 +20,10 @@ mask(123456789) // *****6789
 function yesterday() {
 	let d = new Date();
 	d.setDate(d.getDate() - 1);
-	return d.toISOString().split('T')[0]
+	return d.toISOString().split("T")[0];
 }
 
-yesterday() // 2021-5-29 (当前日期是2021-5-30)
+yesterday(); // 2021-5-29 (当前日期是2021-5-30)
 
 /**
  * 如果字符串是y或yes返回true,如果字符串是n或no返回false 不区分大小写
@@ -34,11 +34,11 @@ yesterday() // 2021-5-29 (当前日期是2021-5-30)
  * @returns {boolean}
  * */
 function yesNo(val, def = false) {
-	return /^(y|yes)$/i.test(val) ? true : /^(n|no)$/i.test(val) ? false : def
+	return /^(y|yes)$/i.test(val) ? true : /^(n|no)$/i.test(val) ? false : def;
 }
 
-yesNo('Y') // true
-yesNo('Foo', true) // true
+yesNo("Y"); // true
+yesNo("Foo", true); // true
 
 /**
  * 将 File 对象转为 ArrayBuffer
@@ -47,15 +47,15 @@ yesNo('Foo', true) // true
  * */
 function fileToBuffer(file) {
 	return new Promise((resolve, reject) => {
-		const fr = new FileReader()
+		const fr = new FileReader();
 		fr.onload = e => {
-			resolve(e.target.result)
-		}
-		fr.readAsArrayBuffer(file)
+			resolve(e.target.result);
+		};
+		fr.readAsArrayBuffer(file);
 		fr.onerror = () => {
-			reject(new Error('转换文件格式错误'))
-		}
-	})
+			reject(new Error("转换文件格式错误"));
+		};
+	});
 }
 
 /**
@@ -64,18 +64,18 @@ function fileToBuffer(file) {
  * @param {string} queryStr
  * */
 function getQueryParams(queryStr) {
-	const res = {}
-	const queryString = window?.location?.search || queryStr
-	const reg = /[?&][^?&]+=[^?&]+/g
-	const found = queryString.match(reg)
-	if(found) {
+	const res = {};
+	const queryString = window?.location?.search || queryStr;
+	const reg = /[?&][^?&]+=[^?&]+/g;
+	const found = queryString.match(reg);
+	if (found) {
 		found.forEach((item) => {
 			let temp = item.substring(1).split("=");
 			let key = temp[0];
 			res[key] = temp[1];
 		});
 	}
-	return res
+	return res;
 }
 
 /**
@@ -85,15 +85,23 @@ function getQueryParams(queryStr) {
  * @param {number} target
  * */
 function twoSum(nums, target) {
-	let prevNums = {}
+	let prevNums = {};
 	for (let i = 0; i < nums.length; i++) {
-		const curNum = nums[i]
-		const targetNum = target - curNum
-		const targetNumIndex = prevNums[targetNum]
-		if(targetNumIndex === undefined) {
-			prevNums[curNum] = i
+		const curNum = nums[i];
+		const targetNum = target - curNum;
+		const targetNumIndex = prevNums[targetNum];
+		if (targetNumIndex === undefined) {
+			prevNums[curNum] = i;
 		} else {
-			return [targetNumIndex, i]
+			return [targetNumIndex, i];
 		}
 	}
 }
+
+/**
+ *
+ * @param phone
+ * @returns {*}
+ */
+const maskPhone = phone => phone.replace(/(\d{3})\d{4}(\d{4})/, "$1****$2");
+const maskPhone2 = phone => `${phone.substring(0, 3)}****${phone.substring(8, 11)}`;

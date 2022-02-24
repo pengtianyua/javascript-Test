@@ -35,3 +35,5 @@ function validParentheses(s) {
 }
 
 console.log(validParentheses(''));
+console.log(validParentheses('(){}[]'));
+console.log(validParentheses('({}){{}[]]}[]'));

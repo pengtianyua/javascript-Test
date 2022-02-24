@@ -105,3 +105,11 @@ function twoSum(nums, target) {
  */
 const maskPhone = phone => phone.replace(/(\d{3})\d{4}(\d{4})/, "$1****$2");
 const maskPhone2 = phone => `${phone.substring(0, 3)}****${phone.substring(8, 11)}`;
+
+/**
+ *
+ * @param string
+ * @returns {string}
+ * @description 格式化数字 每三位加逗号
+ */
+const formatMoney = string => (string || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, "$1,");

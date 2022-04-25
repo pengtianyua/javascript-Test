@@ -113,3 +113,25 @@ const maskPhone2 = phone => `${phone.substring(0, 3)}****${phone.substring(8, 11
  * @description 格式化数字 每三位加逗号
  */
 const formatMoney = string => (string || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, "$1,");
+
+/**
+ *
+ * @param str
+ * @return {string}
+ * @description 小驼峰转连字符
+ */
+const humpToHyphen = str => str.replace(/([A-Z])/g, "-$1").toLowerCase()
+
+/**
+ *
+ * @param str
+ * @return {string}
+ * @description 连字符转小驼峰
+ */
+// const hyphenToHump = str => str.replace(/-(\w)/g, function(all, letter) {
+// 	return letter.toUpperCase()
+// })
+const hyphenToHump = str => str.replace(/-(\w)/g, (all, letter) => letter.toUpperCase())
+
+console.log(humpToHyphen('propName'));
+console.log(hyphenToHump('prop-name'));

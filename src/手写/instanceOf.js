@@ -1,12 +1,15 @@
 function myInstanceOf(target, origin) {
-	const proto = target.__proto__;
-	if (proto) {
-		if (origin.prototype === proto) {
+	const prototype = target.__proto__;
+	if (prototype) {
+		if (origin.prototype === prototype) {
 			return true;
 		} else {
-			return myInstanceOf(proto, origin);
+			return myInstanceOf(prototype, origin);
 		}
 	} else {
 		return false;
 	}
 }
+
+const a = [];
+console.log(myInstanceOf(a, Function));

@@ -137,3 +137,44 @@ console.log(view.getInt8(1)); // 0
 console.log(view.getInt16(0)); // 0
 
 view.setUint8(0, 256);
+
+const m1 = new Map([
+	["key1", "value1"],
+	["key2", "value2"],
+	["key3", "value3"]
+]);
+console.log(m1.size);
+
+const m2 = new Map({
+	[Symbol.iterator]: function* () {
+		yield ["key1", "value1"];
+		yield ["key2", "value2"];
+		yield ["key3", "value3"];
+	}
+});
+
+/**
+ * 使用弱映射 当节点从DOM树中被删除后 垃圾回收程序就可以立即释放内存
+ */
+const m3 = new WeakMap();
+// const button = document.querySelector("#login");
+// m3.set(button, { disabled: true });
+
+const s1 = new Set();
+console.log(s1.values === s1[Symbol.iterator]);
+
+let iterableThings = [
+	Array.of(1, 2),
+	Int16Array.of(3, 4),
+	new Map([
+		[5, 6],
+		[7, 8]
+	]),
+	new Set([9, 10])
+];
+
+for (const iterableThing of iterableThings) {
+	for (const x of iterableThing) {
+		console.log(x);
+	}
+}

@@ -84,4 +84,21 @@ for (const searchParam of searchParams) {
 //
 // history.back();
 // history.forward();
-history.length;
+console.log(history.length);
+
+// history.pushState(
+// 	{
+// 		foo: "bar"
+// 	},
+// 	"title",
+// 	"baz.html"
+// );
+
+window.addEventListener("popstate", (e) => {
+	let state = e.state;
+	if (state) {
+		// processState(state);
+	}
+});
+
+// history.replaceState({}, "");

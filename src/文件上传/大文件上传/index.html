@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Title</title>
+	</head>
+	<body>
+		<input type="file" id="uploadFile" />
+		<button id="uploadBtn">上传文件</button>
+	</body>
+	<script type="module">
+		import { uploadFile } from "./uploadFile";
+
+		const uploadFileEle = document.getElementById("uploadFile");
+		const uploadBtn = document.getElementById("uploadBtn");
+
+		uploadBtn.onclick = () => {
+			uploadFile(uploadFileEle);
+		};
+	</script>
+</html>

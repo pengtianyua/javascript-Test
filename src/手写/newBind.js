@@ -3,6 +3,7 @@ Function.prototype.newBind = function (context = window, ...args1) {
 		throw new TypeError("Error");
 	}
 	const _this = this;
+	console.log(this);
 	return function F(...args2) {
 		if (this instanceof F) {
 			return new _this(...args1, ...args2);
@@ -11,3 +12,15 @@ Function.prototype.newBind = function (context = window, ...args1) {
 		}
 	};
 };
+
+const obj = {
+	a: 1,
+	getA() {
+		return this.a;
+	}
+};
+const retrieveA = obj.getA;
+
+const fn = retrieveA.newBind(obj);
+
+console.log(fn());

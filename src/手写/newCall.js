@@ -6,3 +6,15 @@ Function.prototype.newCall = function (context = window, ...args) {
 	delete context[fn];
 	return result;
 };
+
+const obj = {
+	a: 1,
+	getA() {
+		return this.a;
+	}
+};
+
+const retrieveA = obj.getA;
+
+console.log(retrieveA());
+console.log(retrieveA.newCall(obj));

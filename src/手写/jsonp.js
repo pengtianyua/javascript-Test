@@ -5,10 +5,9 @@
  * 4.挂载回调函数
  */
 
-(function(window, document) {
+(function (window, document) {
 	"use strict";
-	window.$jsonp = function(url, data, callback) {
-
+	window.$jsonp = function (url, data, callback) {
 		// 将传入的 data 数据转化为 URL 字符串格式
 		// {id: 1, name: 'jack'} => id=1&name=jack
 		let dataString = url.indexOf("?") === -1 ? "?" : "&";
@@ -18,7 +17,8 @@
 
 		// 处理 URL 中的回调函数
 		// cbFuncName 回调函数的名字 ：my_json_cb_名字的前缀 + 随机数（把小数点去掉）
-		let cbFuncName = "my_json_cb" + Math.random().toString().replace(".", "");
+		let cbFuncName =
+			"my_json_cb" + Math.random().toString().replace(".", "");
 		dataString += "callback=" + cbFuncName;
 
 		// 创建一个 script 标签并插入到页面中
@@ -26,7 +26,7 @@
 		scriptEle.src = url + dataString;
 
 		// 挂载回调函数
-		window[cbFuncName] = function(data) {
+		window[cbFuncName] = function (data) {
 			callback(data);
 			document.body.removeChild(scriptEle);
 		};
@@ -47,11 +47,11 @@ const jsonp = ({ url, params, callbackName }) => {
 		dataSrc += `callback=${callbackName}`;
 		return `${url}?${dataSrc}`;
 	};
-	return new Promise(resolve => {
+	return new Promise((resolve) => {
 		const scriptEle = document.createElement("script");
 		scriptEle.src = generalUrl();
 		document.body.appendChild(scriptEle);
-		window[callbackName] = data => {
+		window[callbackName] = (data) => {
 			resolve(data);
 			document.body.removeChild(scriptEle);
 		};
@@ -59,12 +59,12 @@ const jsonp = ({ url, params, callbackName }) => {
 };
 
 function jsonp(url, jsonpCallback, success) {
-	let script = document.createElement('script')
-	script.src = url
-	script.async = true
-	script.type = 'text/javascript'
-	window[jsonpCallback] = function(data) {
-		success && success(data)
-	}
-	document.appendChild(script)
+	let script = document.createElement("script");
+	script.src = url;
+	script.async = true;
+	script.type = "text/javascript";
+	window[jsonpCallback] = function (data) {
+		success && success(data);
+	};
+	document.appendChild(script);
 }

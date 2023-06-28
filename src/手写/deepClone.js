@@ -33,7 +33,6 @@ const deepTag = [mapTag, setTag, arrayTag, objectTag, argsTag];
  * 性能优化 while
  */
 function deepClone(target, map = new WeakMap()) {
-
 	//  克隆原始类型 原始类型直接返回
 	if (!isObject(target)) {
 		return target;
@@ -56,7 +55,7 @@ function deepClone(target, map = new WeakMap()) {
 
 	//  克隆 Set
 	if (type === setTag) {
-		target.forEach(val => {
+		target.forEach((val) => {
 			cloneTarget.add(deepClone(val, map));
 		});
 		return cloneTarget;
@@ -64,7 +63,7 @@ function deepClone(target, map = new WeakMap()) {
 
 	//  克隆 Map
 	if (type === mapTag) {
-		target.forEach(val => {
+		target.forEach((val) => {
 			cloneTarget.set(deepClone(val, map));
 		});
 		return cloneTarget;
@@ -211,7 +210,7 @@ const target = {
 	func1: () => {
 		console.log("箭头函数");
 	},
-	func2: function(a, b) {
+	func2: function (a, b) {
 		return a + b;
 	}
 };
@@ -220,16 +219,15 @@ target.target = target;
 let a = deepClone(target);
 console.log(a);
 
-
 /**
  * @description 所需拷贝对象含有内置类型并且不包含函数
  *
  * MessageChannel 消息通道 port1 port2
  * */
 function structuralClone(obj) {
-	return new Promise(resolve => {
+	return new Promise((resolve) => {
 		const { port1, port2 } = new MessageChannel();
-		port2.onmessage = ev => resolve(ev.data);
+		port2.onmessage = (ev) => resolve(ev.data);
 		port1.postMessage(obj);
 	});
 }

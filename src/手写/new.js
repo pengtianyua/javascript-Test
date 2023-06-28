@@ -16,7 +16,10 @@ function newOperator(ctor) {
 	const args = [...arguments];
 	const ctorReturnRes = ctor.apply(newObj, args);
 	console.log(ctorReturnRes);
-	if ((typeof ctorReturnRes === "object" && ctorReturnRes !== null) || typeof ctorReturnRes === "function") {
+	if (
+		(typeof ctorReturnRes === "object" && ctorReturnRes !== null) ||
+		typeof ctorReturnRes === "function"
+	) {
 		return ctorReturnRes;
 	}
 	return newObj;
@@ -24,6 +27,7 @@ function newOperator(ctor) {
 
 function Student(name) {
 	this.name = name;
+	return {};
 }
 const student = newOperator(Student, "swt");
 console.log(student);

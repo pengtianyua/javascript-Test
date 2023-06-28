@@ -7,11 +7,11 @@
  * 第一次事件不会触发 最后一次一定触发
  */
 export function throttle(fn, delay) {
-	let timer = null
+	let timer = null;
 	return function (...args) {
 		if (!timer) {
 			timer = setTimeout(() => {
-				timer = null
+				timer = null;
 				fn.apply(this, args);
 			}, delay);
 		}
@@ -26,12 +26,12 @@ export function throttle(fn, delay) {
  *
  * 第一次事件肯定触发 最后一次不会触发
  */
-export function throttle(fn, time) {
+export function throttle2(fn, time) {
 	let pre = 0;
-	return function(...args) {
-		if(Date.now() - pre > time) {
-			pre = Date.now()
-			fn.apply(this, args)
+	return function (...args) {
+		if (Date.now() - pre > time) {
+			pre = Date.now();
+			fn.apply(this, args);
 		}
-	}
+	};
 }

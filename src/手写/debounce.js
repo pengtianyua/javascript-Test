@@ -11,8 +11,9 @@ export function debounce(fn, delay, flag) {
 	let timeout = null;
 	return function (...args) {
 		clearTimeout(timeout);
-		if(flag && !timeout) { // 当定时器变量为空时 说明是第一次执行 就立即执行一次
-			fn.apply(this, args)
+		if (flag && !timeout) {
+			// 当定时器变量为空时 说明是第一次执行 就立即执行一次
+			fn.apply(this, args);
 		}
 		timeout = setTimeout(() => {
 			fn.apply(this, args);

@@ -232,7 +232,32 @@ function structuralClone(obj) {
 	});
 }
 
+// window.structuredClone(obj);
+
 // (async () => {
 // 	const clone = await structuralClone(target);
 // 	console.log(clone);
 // })();
+
+const obj = { a: 1, b: { c: 2 } };
+
+function deepC(obj, weakMap = new WeakMap()) {
+	if (obj === null) return obj;
+	if (obj instanceof Date) return new Date(obj);
+	if (obj instanceof RegExp) return new RegExp(obj);
+	if (typeof obj !== "object") return obj;
+	if (weakMap.has(obj)) return weakMap.get(obj);
+	let result = {};
+	weakMap.set(obj, result);
+	for (const objKey in obj) {
+		if (Object.hasOwn(obj, objKey)) {
+			result[objKey] = deepC(obj[objKey], weakMap);
+		}
+	}
+	return result;
+}
+
+const obj2 = deepC(obj);
+obj2.b.c = 3;
+console.log(obj2);
+console.log(obj);

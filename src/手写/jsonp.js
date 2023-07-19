@@ -65,6 +65,7 @@ function jsonp(url, jsonpCallback, success) {
 	script.type = "text/javascript";
 	window[jsonpCallback] = function (data) {
 		success && success(data);
+		document.removeChild(script);
 	};
 	document.appendChild(script);
 }

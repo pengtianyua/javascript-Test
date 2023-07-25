@@ -14,3 +14,7 @@ function currying(fn, ...args) {
 		return (...args2) => currying(fn, ...args, ...args2);
 	}
 }
+
+const a = currying((a, b) => a + b);
+
+console.log(a(1)(2));
